@@ -1,5 +1,5 @@
 
-name: EKS Deploy
+name: VPS & Subnet Deploy
 on:
   workflow_dispatch:
     inputs:
