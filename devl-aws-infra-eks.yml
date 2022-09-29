@@ -24,11 +24,11 @@ Parameters:
   
   privateSubnet0:
     Type: String
-    Default: "subnet-0dca378bcca0c9b2a"
+    Default: "subnet-0d07268f204196916"
   
   privateSubnet1:
     Type: String
-    Default: "subnet-0c885676de78511dd"
+    Default: "subnet-059813ff1e3549a6f"
 
 
 Resources:
