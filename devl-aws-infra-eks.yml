@@ -12,7 +12,7 @@ Parameters:
   awsAcct:
     Type: String
     Description: "AWS Account Number"
-    Default: "077794698366"
+    Default: "080400906742"
   
   componentValue:
     Type: String
@@ -24,11 +24,11 @@ Parameters:
   
   privateSubnet0:
     Type: String
-    Default: "subnet-0d07268f204196916"
+    Default: "subnet-0ad58db699b759d0c"
   
   privateSubnet1:
     Type: String
-    Default: "subnet-059813ff1e3549a6f"
+    Default: "subnet-04aa0ae70c76aac70"
 
 
 Resources:
@@ -108,7 +108,7 @@ Resources:
       DiskSize: 200
       ForceUpdateEnabled: false
       InstanceTypes:
-      - r6i.4xlarge
+      - t3.medium            #r6i.4xlarge
       NodeRole: !Join [":", ["arn:aws:iam:" , !Ref awsAcct , "role/eks-node-instance-role"]]
       ScalingConfig:
         DesiredSize: 2
