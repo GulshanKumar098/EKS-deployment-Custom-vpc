@@ -40,8 +40,6 @@ Parameters:
 
 Resources:
 
-
-
   EKSIAMRole:
    Type: 'AWS::IAM::Role'
    Properties:
@@ -52,7 +50,7 @@ Resources:
           Principal:
            Service:
             - eks.amazonaws.com
-        Action:
+          Action:
           - 'sts:AssumeRole'
     RoleName: !Ref EKSIAMRoleName
     ManagedPolicyArns:
