@@ -1,8 +1,15 @@
+#### Before Running this template need to create role for EKS nad its node Group ####
+
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "AWS CloudFormation Devl Collibra DQ AWS Infra"
 
 
 Parameters:
+
+  EKSIAMRoleName:
+    Type: String
+    Description: The name of the IAM role for the EKS service to assume.
+    Default: eksClusterRole
 
   env:
     Type: String
@@ -32,6 +39,45 @@ Parameters:
 
 
 Resources:
+
+
+
+  EKSIAMRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: 2012-10-17
+        Statement:
+          - Effect: Allow
+          Principal:
+            Service:
+              - eks.amazonaws.com
+          Action:
+            - 'sts:AssumeRole'
+      RoleName: !Ref EKSIAMRoleName
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
+        - arn:aws:iam::aws:policy/AmazonEKSServicePolicy
+
+
+  NodeInstanceRole:
+    Type: "AWS::IAM::Role"
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - ec2.amazonaws.com
+            Action:
+              - "sts:AssumeRole"
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy"
+        - "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
+        - "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+      Path: /
+
 
   KMSKey:
     Type: AWS::KMS::Key
