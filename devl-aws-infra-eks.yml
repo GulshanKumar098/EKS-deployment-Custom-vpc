@@ -43,21 +43,21 @@ Resources:
 
 
   EKSIAMRole:
-    Type: 'AWS::IAM::Role'
-    Properties:
-      AssumeRolePolicyDocument:
-        Version: 2012-10-17
-        Statement:
-          - Effect: Allow
+   Type: 'AWS::IAM::Role'
+   Properties:
+    AssumeRolePolicyDocument:
+      Version: 2012-10-17
+      Statement:
+        - Effect: Allow
           Principal:
-            Service:
-              - eks.amazonaws.com
-          Action:
-            - 'sts:AssumeRole'
-      RoleName: !Ref EKSIAMRoleName
-      ManagedPolicyArns:
-        - arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
-        - arn:aws:iam::aws:policy/AmazonEKSServicePolicy
+           Service:
+            - eks.amazonaws.com
+        Action:
+          - 'sts:AssumeRole'
+    RoleName: !Ref EKSIAMRoleName
+    ManagedPolicyArns:
+      - arn:aws:iam::aws:policy/AmazonEKSClusterPolicy
+      - arn:aws:iam::aws:policy/AmazonEKSServicePolicy
 
 
   NodeInstanceRole:
@@ -115,7 +115,7 @@ Resources:
     Properties:
       Name: !Join [ "-", [ !Ref env , !Ref clusterName ] ]
       Version: "1.21"
-      RoleArn: !Join [":", ["arn:aws:iam:" , !Ref awsAcct , "role/eksClusterRole"]]
+      RoleArn: !Ref EKSIAMRole  #!Join [":", ["arn:aws:iam:" , !Ref awsAcct , "role/eksClusterRole"]]
       Logging:
         ClusterLogging:
           EnabledTypes:
@@ -155,7 +155,7 @@ Resources:
       ForceUpdateEnabled: false
       InstanceTypes:
       - t3.medium            #r6i.4xlarge
-      NodeRole: !Join [":", ["arn:aws:iam:" , !Ref awsAcct , "role/eks-node-instance-role"]]
+      NodeRole: !Ref NodeInstanceRole      #!Join [":", ["arn:aws:iam:" , !Ref awsAcct , "role/eks-node-instance-role"]]
       ScalingConfig:
         DesiredSize: 2
         MaxSize: 8
