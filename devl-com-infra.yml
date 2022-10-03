@@ -12,7 +12,6 @@ Parameters:
     Description: ""
     Default: "nodedemorolegulshan"
 
-  Parameters:
   EnvironmentName:
     Type: String
     Description: Deployment Environment
