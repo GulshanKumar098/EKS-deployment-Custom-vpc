@@ -31,7 +31,7 @@ Parameters:
   
   privateSubnet0:
     Type: String
-    Default: "subnet-0fd145b14c8e6ea1f"
+    Default: "subnet-0bb128530ea467d85"
   
   privateSubnet1:
     Type: String
