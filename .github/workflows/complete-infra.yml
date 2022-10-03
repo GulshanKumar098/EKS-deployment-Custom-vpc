@@ -44,7 +44,7 @@ jobs:
       if: ${{ github.event.inputs.environment == 'devl' }}
       run: |
         echo "ENVIRONMENT=devl" >> $GITHUB_ENV
-        echo "AWS_ACCT=077794698366" >> $GITHUB_ENV
+        echo "AWS_ACCT=498614279603" >> $GITHUB_ENV
 
     - name: "Set environment variables for prod environment"
       if: ${{ github.event.inputs.environment == 'prod' }}

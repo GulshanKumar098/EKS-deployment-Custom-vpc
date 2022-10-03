@@ -23,7 +23,7 @@ Parameters:
   awsAcct:
     Type: String
     Description: "AWS Account Number"
-    Default: ""
+    Default: "498614279603"
 
   VpcCIDR:
     Description: Please enter the IP range (CIDR notation) for this VPC
