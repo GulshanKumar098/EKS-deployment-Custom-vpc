@@ -27,4 +27,4 @@ jobs:
 
 
     - name: run-ecr 
-      run: aws cloudformation deploy --stack-name gul-role-stack --template-file devl-role.yml
+      run: aws cloudformation deploy --stack-name gul-role-stack --template-file devl-role.yml --parameters ParameterKey=Environment,ParameterValue=dev
