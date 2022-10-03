@@ -19,7 +19,7 @@ Parameters:
   awsAcct:
     Type: String
     Description: "AWS Account Number"
-    Default: "080400906742"
+    Default: "488842980206"
   
   componentValue:
     Type: String
@@ -129,6 +129,3 @@ Resources:
       Tags: 
         Name: !Join [ "-", [ !Ref env , !Ref clusterName ] ]
         component: !Ref componentValue
-
-     
-      
