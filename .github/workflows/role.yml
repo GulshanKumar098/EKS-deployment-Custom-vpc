@@ -38,4 +38,4 @@ jobs:
         echo "AWS_ACCT=188549407646" >> $GITHUB_ENV
 
     - name: run-ecr 
-      run: aws cloudformation deploy --stack-name gul-role-stack-${{ env.ENVIRONMENT }} --template-file ${{ env.ENVIRONMENT }}-role.yml --capabilities CAPABILITY_NAMED_IAM --profile dev
+      run: aws cloudformation deploy --stack-name gul-role-stack-${{ env.ENVIRONMENT }} --template-file ${{ env.ENVIRONMENT }}-role.yml --capabilities CAPABILITY_NAMED_IAM --profile devl
