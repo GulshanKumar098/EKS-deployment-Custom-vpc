@@ -14,30 +14,16 @@ on:
 jobs:
   Deploy:
     runs-on: ubuntu-latest
-    #this is for control the deployment via approval method 1
-    # alrerady craeted env with name dev in github setings 
-    #environment: Infra
-
-    
-    steps:
-     
+    steps:    
     - name: Checkout
       uses: actions/checkout@v2
-      
-#      # For mannual approval method 2 
-#     - uses: trstringer/manual-approval@v1
-#       with:
-#         approvers: gulshan3798
           
-
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-       aws-region: us-east-1
-
-        
+       aws-region: us-east-1 
 
     - name: "Set environment variables for devl environment"
       if: ${{ github.event.inputs.environment == 'devl' }}
@@ -46,10 +32,10 @@ jobs:
         echo "AWS_ACCT=498614279603" >> $GITHUB_ENV
     - name: "Set environment variables for prod environment"
       if: ${{ github.event.inputs.environment == 'prod' }}
+
       run: |
         echo "ENVIRONMENT=prod" >> $GITHUB_ENV
         echo "AWS_ACCT=188549407646" >> $GITHUB_ENV
+        
     - name: run-ecr 
-      #run: aws cloudformation deploy --stack-name dq-ECR-stack --template-file devl-aws-infra-ecr.yml  --tags Name=dq-ecr-stack --region us-east-1
-      run: |
-       aws cloudformation deploy --stack-name gul-role-stack-${{ env.ENVIRONMENT }} --template-file ${{ env.ENVIRONMENT }}-role.yml  --tags Name=gul-role-stack-${{ env.ENVIRONMENT }} component=ae-collibra-dq  --region us-east-1
+      run: aws cloudformation deploy --stack-name gul-role-stack-${{ env.ENVIRONMENT }} --template-file ${{ env.ENVIRONMENT }}-role.yml  --tags Name=gul-role-stack-${{ env.ENVIRONMENT }} --region us-east-1
