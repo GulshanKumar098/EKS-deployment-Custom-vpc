@@ -43,7 +43,7 @@ jobs:
       if: ${{ github.event.inputs.environment == 'devl' }}
       run: |
         echo "ENVIRONMENT=devl" >> $GITHUB_ENV
-        echo "AWS_ACCT=077794698366" >> $GITHUB_ENV
+        echo "AWS_ACCT=498614279603" >> $GITHUB_ENV
     - name: "Set environment variables for prod environment"
       if: ${{ github.event.inputs.environment == 'prod' }}
       run: |
@@ -52,5 +52,4 @@ jobs:
     - name: run-ecr 
       #run: aws cloudformation deploy --stack-name dq-ECR-stack --template-file devl-aws-infra-ecr.yml  --tags Name=dq-ecr-stack --region us-east-1
       run: |
-       aws cloudformation deploy --stack-name gul-role-stack-${{ env.ENVIRONMENT }} --template-file ${{ env.ENVIRONMENT }}-role.yml  --tags Name=gul-role-stack-${{ env.ENVIRONMENT }} component=ae-collibra-dq  --region us-east-1 
-Footer
+       aws cloudformation deploy --stack-name gul-role-stack-${{ env.ENVIRONMENT }} --template-file ${{ env.ENVIRONMENT }}-role.yml  --tags Name=gul-role-stack-${{ env.ENVIRONMENT }} component=ae-collibra-dq  --region us-east-1
