@@ -1,3 +1,11 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Parameters:
+  EKSIAMRoleName:
+    Type: String
+    Description: ""
+    Default: "EKSdemorolegulshan"
+
 Resources:
   EKSIAMRole:
     Type: 'AWS::IAM::Role'
