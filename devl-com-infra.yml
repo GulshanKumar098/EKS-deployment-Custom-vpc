@@ -17,6 +17,14 @@ Parameters:
     Description: Deployment Environment
     Default: "dev"  
 
+  componentValue:
+    Type: String
+    Default: "ae-collibra-dq"
+  
+  clusterName:
+    Type: String
+    Default: "collibradq-eks-cluster"
+  
 
   ##### Need to change everytime ######
   awsAcct:
