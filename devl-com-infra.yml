@@ -310,7 +310,7 @@ Resources:
     Properties:
       Name: !Join [ "-", [ !Ref env , !Ref clusterName ] ]
       Version: "1.21"
-      RoleArn: !Ref EKSIAMRoleName
+      RoleArn: !Join [":", ["arn:aws:iam:" , !Ref awsAcct , "role/EKSIAMRole"]]
       Logging:
         ClusterLogging:
           EnabledTypes:
@@ -350,7 +350,7 @@ Resources:
       ForceUpdateEnabled: false
       InstanceTypes:
       - t3.medium            #r6i.4xlarge
-      NodeRole: !Ref NodeIAMRoleName
+      NodeRole: !Join [":", ["arn:aws:iam:" , !Ref awsAcct , "role/nodeInstanceRole"]]
       ScalingConfig:
         DesiredSize: 2
         MaxSize: 8
