@@ -1,15 +1,11 @@
-#### Before Running this template need to create role for EKS nad its node Group ####
+#### Before Running this template need to create role for EKS and its node Group #####
+#### also network paramter using output of VPC stack so need to put stack name while importing ####
 
 AWSTemplateFormatVersion: "2010-09-09"
-Description: "AWS CloudFormation Devl Collibra DQ AWS Infra"
+Description: "AWS CloudFormation Template For Craeting EKS Control plan, worker nodes"
 
 
 Parameters:
-
-  EKSIAMRoleName:
-    Type: String
-    Description: The name of the IAM role for the EKS service to assume.
-    Default: eksClusterRole
 
   env:
     Type: String
@@ -19,7 +15,7 @@ Parameters:
   awsAcct:
     Type: String
     Description: "AWS Account Number"
-    Default: "488842980206"
+    Default: "215476549484"
   
   componentValue:
     Type: String
@@ -29,13 +25,13 @@ Parameters:
     Type: String
     Default: "collibradq-eks-cluster"
   
-  privateSubnet0:
-    Type: String
-    Default: "subnet-0bb128530ea467d85"
+  # privateSubnet0:
+  #   Type: String
+  #   Default: "subnet-01fd2c2546efad5f6"
   
-  privateSubnet1:
-    Type: String
-    Default: "subnet-0e8178ca4c094caf7"
+  # privateSubnet1:
+  #   Type: String
+  #   Default: "subnet-01f4f14af82e13c40"
 
 
 Resources:
@@ -76,7 +72,7 @@ Resources:
     Properties:
       Name: !Join [ "-", [ !Ref env , !Ref clusterName ] ]
       Version: "1.21"
-      RoleArn: !Join [":", ["arn:aws:iam:" , !Ref awsAcct , "role/eksClusterRole"]]
+      RoleArn: !Join [":", ["arn:aws:iam:" , !Ref awsAcct , "role/EKSdemorolegulshan"]]
       Logging:
         ClusterLogging:
           EnabledTypes:
@@ -88,9 +84,12 @@ Resources:
       ResourcesVpcConfig:
         EndpointPrivateAccess: true
         EndpointPublicAccess: true
-        SubnetIds:
-          - !Ref privateSubnet0
-          - !Ref privateSubnet1
+        # SubnetIds:
+        #   - !Ref privateSubnet0
+        #   - !Ref privateSubnet1
+        SubnetIds: Fn::ImportValue 
+            'Fn::Sub': '${NetworkStack-devlParameter}-SubnetID'
+
       EncryptionConfig:
         - Provider:
             KeyArn: !GetAtt KMSKey.Arn
@@ -116,14 +115,17 @@ Resources:
       ForceUpdateEnabled: false
       InstanceTypes:
       - t3.medium            #r6i.4xlarge
-      NodeRole: !Join [":", ["arn:aws:iam:" , !Ref awsAcct , "role/eks-node-instance-role"]]
+      NodeRole: !Join [":", ["arn:aws:iam:" , !Ref awsAcct , "role/nodedemorolegulshan"]]
       ScalingConfig:
         DesiredSize: 2
         MaxSize: 8
         MinSize: 2
-      Subnets:
-        - !Ref privateSubnet0
-        - !Ref privateSubnet1
+      # Subnets:
+      #   - !Ref privateSubnet0
+      #   - !Ref privateSubnet1
+      SubnetId: Fn::ImportValue 
+            'Fn::Sub': '${NetworkStack-devlParameter}-SubnetID'
+
       UpdateConfig:
         MaxUnavailablePercentage: 50
       Tags: 
