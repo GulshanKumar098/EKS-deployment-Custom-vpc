@@ -27,4 +27,4 @@ jobs:
 
 
     - name: run-ecr 
-      run: aws cloudformation deploy --stack-name gul-role-stack --template-file devl-role.yml --capabilities CAPABILITY_NAMED_IAM
+      run: aws cloudformation deploy --stack-name gul-role-stack --template-file devl-role-eks-node.yml --capabilities CAPABILITY_NAMED_IAM

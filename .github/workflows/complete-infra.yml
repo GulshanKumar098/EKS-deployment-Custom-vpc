@@ -54,6 +54,6 @@ jobs:
 
     - name: run-ecr 
       run: |
-       aws cloudformation deploy --stack-name RoleStack-${{ env.ENVIRONMENT }} --template-file ${{ env.ENVIRONMENT }}-role.yml --tags Name=eks-role-stack-${{ env.ENVIRONMENT }} --region us-east-1 --capabilities CAPABILITY_NAMED_IAM
+       aws cloudformation deploy --stack-name RoleStack-${{ env.ENVIRONMENT }} --template-file ${{ env.ENVIRONMENT }}-role-eks-node.yml --tags Name=eks-role-stack-${{ env.ENVIRONMENT }} --region us-east-1 --capabilities CAPABILITY_NAMED_IAM
        aws cloudformation deploy --stack-name NetworkStack-${{ env.ENVIRONMENT }} --template-file ${{ env.ENVIRONMENT }}-aws-infra-vpc.yml --tags Name=eks-network-stack-${{ env.ENVIRONMENT }} --region us-east-1
        aws cloudformation deploy --stack-name EKS-deploy-${{ env.ENVIRONMENT }} --template-file ${{ env.ENVIRONMENT }}-aws-infra-eks.yml --tags Name=eks-stack-${{ env.ENVIRONMENT }} --region us-east-1
