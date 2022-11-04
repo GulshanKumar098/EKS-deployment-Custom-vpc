@@ -88,7 +88,7 @@ Resources:
         #   - !Ref privateSubnet0
         #   - !Ref privateSubnet1
         SubnetIds: Fn::ImportValue 
-            'Fn::Sub': '${NetworkStack-devlParameter}-SubnetID'
+            'Fn::Sub': '${NetworkStack-devlParameter}-PriSubnet1'
 
       EncryptionConfig:
         - Provider:
@@ -124,7 +124,7 @@ Resources:
       #   - !Ref privateSubnet0
       #   - !Ref privateSubnet1
       SubnetId: Fn::ImportValue 
-            'Fn::Sub': '${NetworkStack-devlParameter}-SubnetID'
+            'Fn::Sub': '${NetworkStack-devlParameter}-PriSubnet1'
 
       UpdateConfig:
         MaxUnavailablePercentage: 50
