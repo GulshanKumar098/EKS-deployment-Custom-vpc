@@ -240,7 +240,7 @@ Outputs:
     Value: !Ref PublicSubnet1
     Export:
       Name:
-        'Fn::Sub': '${AWS::StackName}-SubnetID'
+        'Fn::Sub': '${AWS::StackName}-PubSubnet1'
 
 
   PublicSubnet2:
@@ -248,7 +248,7 @@ Outputs:
     Value: !Ref PublicSubnet2
     Export:
       Name:
-        'Fn::Sub': '${AWS::StackName}-SubnetID'
+        'Fn::Sub': '${AWS::StackName}-PubSubnet2'
 
 
   PrivateSubnet1:
@@ -256,14 +256,14 @@ Outputs:
     Value: !Ref PrivateSubnet1
     Export:
       Name:
-        'Fn::Sub': '${AWS::StackName}-SubnetID1'
+        'Fn::Sub': '${AWS::StackName}-PriSubnet1'
 
   PrivateSubnet2:
     Description: A reference to the private subnet in the 2nd Availability Zone
     Value: !Ref PrivateSubnet2
     Export:
       Name:
-        'Fn::Sub': '${AWS::StackName}-SubnetID2'
+        'Fn::Sub': '${AWS::StackName}-PriSubnet2'
 
 
   NoIngressSecurityGroup:
