@@ -15,7 +15,7 @@ Parameters:
   awsAcct:
     Type: String
     Description: "AWS Account Number"
-    Default: "294140702112"
+    Default: "198653053291"
   
   componentValue:
     Type: String
@@ -24,6 +24,14 @@ Parameters:
   clusterName:
     Type: String
     Default: "collibradq-eks-cluster"
+
+  PublicSubnet1:
+    Type: String
+    Default: "subnet-04a944f4b31358c81"
+  
+  PublicSubnet2:
+    Type: String
+    Default: "subnet-03065438cb9441bc6"
   
   # privateSubnet0:
   #   Type: String
@@ -33,6 +41,7 @@ Parameters:
   #   Type: String
   #   Default: "subnet-01f4f14af82e13c40"
 
+ 
 
 Resources:
 
@@ -84,10 +93,10 @@ Resources:
       ResourcesVpcConfig:
         EndpointPrivateAccess: true
         EndpointPublicAccess: true
-        # SubnetIds:
-        #   - !Ref privateSubnet0
-        #   - !Ref privateSubnet1
-        SubnetIds: Fn::ImportValue: !sub privateSubnet0
+        SubnetIds:
+          - !Ref PublicSubnet2
+          - !Ref PublicSubnet1
+        
 
       EncryptionConfig:
         - Provider:
@@ -119,10 +128,11 @@ Resources:
         DesiredSize: 2
         MaxSize: 8
         MinSize: 2
-      # Subnets:
-      #   - !Ref privateSubnet0
-      #   - !Ref privateSubnet1
-      SubnetId: Fn::ImportValue: !sub privateSubnet0
+
+      Subnets:
+        - !Ref PublicSubnet2
+        - !Ref PublicSubnet1
+      
 
       UpdateConfig:
         MaxUnavailablePercentage: 50
