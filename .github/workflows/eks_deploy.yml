@@ -59,6 +59,7 @@ jobs:
       run: |
        aws cloudformation deploy --stack-name gul-eks-stack-${{ env.ENVIRONMENT }} --template-file ${{ env.ENVIRONMENT }}-aws-infra-eks.yml  --tags Name=gul-eks-stack-${{ env.ENVIRONMENT }} component=ae-collibra-dq  --region us-east-1
 
-       
-    - name: update-kubeconfig   
+
+    - name: update-kubeconfig  
+      run: | 
        aws eks update-kubeconfig --region us-east-1 --name ${{env.CDQ_EKS_CLUSTER}} 
