@@ -4,6 +4,9 @@ Description:  This template deploys a VPC, with a pair of public and private sub
   route on the public subnets. It deploys a pair of NAT gateways (one in each AZ),
   and default routes for them in the private subnets.
 
+
+
+####### No inputs requiew #########
 Parameters:
   EnvironmentName:
     Type: String
