@@ -45,14 +45,17 @@ jobs:
       run: |
         echo "ENVIRONMENT=devl" >> $GITHUB_ENV
         echo "AWS_ACCT=077794698366" >> $GITHUB_ENV
+        echo "CDQ_EKS_CLUSTER=devl-collibradq-eks-cluster" >> $GITHUB_ENV
 
     - name: "Set environment variables for prod environment"
       if: ${{ github.event.inputs.environment == 'prod' }}
       run: |
         echo "ENVIRONMENT=prod" >> $GITHUB_ENV
         echo "AWS_ACCT=188549407646" >> $GITHUB_ENV
+        echo "CDQ_EKS_CLUSTER=prod-collibradq-eks-cluster" >> $GITHUB_ENV
 
     - name: run-ecr 
       #run: aws cloudformation deploy --stack-name dq-ECR-stack --template-file devl-aws-infra-ecr.yml  --tags Name=dq-ecr-stack --region us-east-1
       run: |
-       aws cloudformation deploy --stack-name gul-eks-stack-${{ env.ENVIRONMENT }} --template-file ${{ env.ENVIRONMENT }}-aws-infra-eks.yml  --tags Name=gul-eks-stack-${{ env.ENVIRONMENT }} component=ae-collibra-dq  --region us-east-1 
+       aws cloudformation deploy --stack-name gul-eks-stack-${{ env.ENVIRONMENT }} --template-file ${{ env.ENVIRONMENT }}-aws-infra-eks.yml  --tags Name=gul-eks-stack-${{ env.ENVIRONMENT }} component=ae-collibra-dq  --region us-east-1
+       aws eks update-kubeconfig --region us-east-1 --name ${{env.CDQ_EKS_CLUSTER}} 
