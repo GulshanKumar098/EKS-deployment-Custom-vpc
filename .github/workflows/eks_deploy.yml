@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     #this is for control the deployment via approval method 1
     # alrerady craeted env with name dev in github setings 
-    environment: Infra
+    #environment: Infra
 
     
     steps:
