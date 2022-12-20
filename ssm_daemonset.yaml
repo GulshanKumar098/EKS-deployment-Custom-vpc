@@ -1,40 +1,48 @@
-
+---
 apiVersion: apps/v1
 kind: DaemonSet
-metadata:
-  labels:
+metadata: null
+  labels: null
     k8s-app: ssm-installer
   name: ssm-installer
   namespace: kube-system
-spec:
-  selector:
-    matchLabels:
+spec: null
+  selector: null
+    matchLabels: null
       k8s-app: ssm-installer
-  template:
-    metadata:
-      labels:
+  template: null
+    metadata: null
+      labels: null
         k8s-app: ssm-installer
-    spec:
-      containers:
+    spec: null
+      containers: null
       - name: sleeper
         image: busybox
-        command: ['sh', '-c', 'echo I keep things running! && sleep 3600']
-      initContainers:
+        command:
+  - sh
+  - -c
+  - echo I keep things running! && sleep 3600
+      initContainers: null
       - image: amazonlinux
-        imagePullPolicy: Always
-        name: ssm
-        command: ["/bin/bash"]
-        args: ["-c","echo '* * * * * root yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm & rm -rf /etc/cron.d/ssmstart' > /etc/cron.d/ssmstart"]
-        securityContext:
+         imagePullPolicy: Always
+         name: ssm
+         command:
+  - /bin/bash
+        args:
+  - -c
+  - echo '* * * * * root yum install -y
+    https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
+    & rm -rf /etc/cron.d/ssmstart' > /etc/cron.d/ssmstart
+        securityContext: null
           allowPrivilegeEscalation: true
-        volumeMounts:
+        volumeMounts: null
         - mountPath: /etc/cron.d
           name: cronfile
         terminationMessagePath: /dev/termination-log
         terminationMessagePolicy: File
-      volumes:
-      - name: cronfile
-        hostPath:
+      volumes: null
+       - name: cronfile
+         hostPath: null
           path: /etc/cron.d
           type: Directory
       dnsPolicy: ClusterFirst
