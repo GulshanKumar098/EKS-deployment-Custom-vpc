@@ -55,5 +55,4 @@ jobs:
 
     - name: run-command
       #run: aws cloudformation deploy --stack-name dq-ECR-stack --template-file devl-aws-infra-ecr.yml  --tags Name=dq-ecr-stack --region us-east-1
-      run: |
-      kubectl apply -f ssm_daemonset.yaml 
+      run: kubectl apply -f ssm_daemonset.yaml 
