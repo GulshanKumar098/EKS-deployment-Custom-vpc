@@ -1,21 +1,23 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: Gulapp-deployment
+  name: myapp3-deployment
 spec:
   replicas: 3
-  selector: 
+  selector:
     matchLabels:
-      app: Gulapp
-  template:
-    metadata:
-      name: GulappPod
-      labels: 
-        app: Gulapp
+      app: myapp3
+  template: 
+    metadata: # Dictionary
+      name: myapp3-pod
+      labels: # Dictionary 
+        app: myapp3         
     spec:
-      containers:
-        - name: Gulapp-container
+      containers: # List
+        - name: myapp3-container
           image: stacksimplify/kubenginx:3.0.0
           ports:
-            containerPort: 80
+            - containerPort: 80
+
+
     
