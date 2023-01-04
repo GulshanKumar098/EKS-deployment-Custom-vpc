@@ -1,5 +1,5 @@
 
-name: EKS Deploy
+name: EKS node Deploy
 on:
   workflow_dispatch:
     inputs:
