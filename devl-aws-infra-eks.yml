@@ -15,7 +15,7 @@ Parameters:
   awsAcct:
     Type: String
     Description: "AWS Account Number"
-    Default: "980664324833"
+    Default: "301243989709"
   
   componentValue:
     Type: String
@@ -27,11 +27,11 @@ Parameters:
 
   PublicSubnet1:
     Type: String
-    Default: "subnet-0115ef8af8ffc75ef"
+    Default: "subnet-063e9f09a4a2b0e4c"
   
   PublicSubnet2:
     Type: String
-    Default: "subnet-08949d3dc3be54e43"
+    Default: "subnet-080057ea29f0ef4ce"
   
   # privateSubnet0:
   #   Type: String
