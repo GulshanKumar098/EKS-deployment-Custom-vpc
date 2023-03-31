@@ -27,11 +27,11 @@ Parameters:
 
   PublicSubnet1:
     Type: String
-    Default: "subnet-063e9f09a4a2b0e4c"
+    Default: "subnet-0263f5641ba8e2cb7"
   
   PublicSubnet2:
     Type: String
-    Default: "subnet-080057ea29f0ef4ce"
+    Default: "subnet-031612fff417bf3fa"
   
   # privateSubnet0:
   #   Type: String
