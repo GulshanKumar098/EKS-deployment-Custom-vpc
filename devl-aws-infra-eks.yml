@@ -15,7 +15,7 @@ Parameters:
   awsAcct:
     Type: String
     Description: "AWS Account Number"
-    Default: "301243989709"
+    Default: "939559088024"
   
   componentValue:
     Type: String
